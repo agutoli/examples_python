@@ -3,7 +3,7 @@
 import ipdb
 import unittest
 
-class String(unittest.TestCase):
+class StringTest(unittest.TestCase):
    
     def test_lower(self):
        self.assertEquals('abcd', 'ABCD'.lower() ) 
@@ -13,6 +13,7 @@ class String(unittest.TestCase):
    
     def test_center(self):
         self.assertEquals('===center===', 'center'.center(12, '=') )
+        self.assertEquals('===center==',  'center'.center(11, '=') )
 
     def test_count(self):
         self.assertEquals(3, 'aaaiiiaaa'.count('i', 0, 9) )
@@ -73,7 +74,8 @@ class String(unittest.TestCase):
     def test_lStrip(self):
         self.assertEquals( 'test',  '-test'.lstrip('-') )
 
- 
 if __name__ == '__main__':
-    unittest.main()
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(StringTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)
 
