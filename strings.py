@@ -222,6 +222,20 @@ class StringTest(unittest.TestCase):
         expected_value_1 = '1=2=3'
         self.assertEquals(expected_value_1, string.join(("1", "2", "3")) )
 
+
+    def test_translate(self):
+        """
+        Return a copy of the string where all characters occurring in the optional argument 
+        deletechars are removed, and the remaining characters have been mapped through the 
+        given translation table, which must be a string of length 256.
+        """
+        #test 1
+        string = 'This is a good string to test!'
+        expected_value = 'Ths s  gd strng t tst!'
+        self.assertEquals(expected_value, string.translate(None, 'aeiou'))
+
+    
+ 
 if __name__ == '__main__':
 
     suite = unittest.TestLoader().loadTestsFromTestCase(StringTest)
