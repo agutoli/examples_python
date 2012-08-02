@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-  
 
 import ipdb
 import unittest
@@ -157,8 +158,8 @@ class StringTest(unittest.TestCase):
         its values are stripped:
         """
         string = '= Text of test ='
-        value_expected = ' Text of test ='
-        self.assertEquals(value_expected,  string.lstrip('=') )
+        expected_value = ' Text of test ='
+        self.assertEquals(expected_value,  string.lstrip('=') )
 
     def test_partition(self):
         """
@@ -167,9 +168,59 @@ class StringTest(unittest.TestCase):
         part after the separator. If the separator is not found, return a 3-tuple 
         containing the string itself, followed by two empty strings.
         """
-        string = 'aaa,bbb,ccc'
-        value_expected = ('aaa', ',', 'bbb,ccc')
-        self.assertTupleEqual(value_expected, string.partition(','))
+        #test  1
+        string_1 = 'aaa,bbb,ccc'
+        expected_value_1 = ('aaa', ',', 'bbb,ccc')
+        self.assertTupleEqual(expected_value_1, string_1.partition(','))
+       
+        #test 2 
+        string_2 = 'a|b|c|d'
+        expected_value_2 = ('a', '|', 'b|c|d')
+        self.assertTupleEqual(expected_value_2, string_2.partition('|'))
+
+    def test_replace(self):
+        """
+        Return a copy of the string with all occurrences of substring old replaced 
+        by new. If the optional argument count is given, only the first count 
+        occurrences are replaced.
+        """
+        #test 1
+        string_1 = 'Hello, I am here!'
+        expected_value_1 = 'Hi, I am here!'
+        self.assertEquals(expected_value_1, string_1.replace('Hello', 'Hi'))
+    
+    def test_rfind(self):
+        """
+        Return the highest index in the string where substring sub is found, such that sub is 
+        contained within s[start:end]. Optional arguments start and end are interpreted as 
+        in slice notation. Return -1 on failure.
+        """
+        #test 1
+        string = 'This is a nice example!'
+        expected_value_1 = 5
+        self.assertEquals(expected_value_1, string.rfind('is'))
+
+        #test 2
+        expected_value_2 = 10
+        self.assertEquals(expected_value_2, string.rfind('nice'))
+        
+        #test 3
+        expected_value_3 = 0# zero is not a false return
+        self.assertEquals(expected_value_3, string.rfind('T'))
+
+        #test 4
+        expected_value_4 = -1# false return
+        self.assertEquals(expected_value_4, string.rfind('='))#value not exists
+
+    def test_join(self):
+        """
+        Return a string which is the concatenation of the strings in the iterable iterable. 
+        The separator between elements is the string providing this method.
+        """
+        string = '='
+        # test 1
+        expected_value_1 = '1=2=3'
+        self.assertEquals(expected_value_1, string.join(("1", "2", "3")) )
 
 if __name__ == '__main__':
 
