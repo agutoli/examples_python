@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-  
 
-import ipdb
 import unittest
 
 class StringTest(unittest.TestCase):
@@ -171,12 +170,12 @@ class StringTest(unittest.TestCase):
         #test  1
         string_1 = 'aaa,bbb,ccc'
         expected_value_1 = ('aaa', ',', 'bbb,ccc')
-        self.assertTupleEqual(expected_value_1, string_1.partition(','))
+        #self.assertTupleEqual(expected_value_1, string_1.partition(','))
        
         #test 2 
         string_2 = 'a|b|c|d'
         expected_value_2 = ('a', '|', 'b|c|d')
-        self.assertTupleEqual(expected_value_2, string_2.partition('|'))
+        #self.assertTupleEqual(expected_value_2, string_2.partition('|'))
 
     def test_replace(self):
         """
@@ -234,8 +233,29 @@ class StringTest(unittest.TestCase):
         expected_value = 'Ths s  gd strng t tst!'
         self.assertEquals(expected_value, string.translate(None, 'aeiou'))
 
-    
- 
+
+    def test_upper(self):
+        """
+        Return a copy of s, but with lower case letters converted to upper case.
+        """
+        string = 'String to upper'
+        expected_value = 'STRING TO UPPER'    
+        self.assertEquals(expected_value, string.upper())
+
+
+    def test_zfill(self):
+        string = '1'
+        expected_value = '001'
+        self.assertEquals(expected_value, string.zfill(3))
+
+    def test_splitlines(self):
+        string = 'Line 1\n\
+                 Line 2\n\
+                 Line 3'
+        expected_value = ['Line 1', 'Line 2', 'Line 3']
+        self.assertListEqual(expected_value, string.splitlines())
+        
+
 if __name__ == '__main__':
 
     suite = unittest.TestLoader().loadTestsFromTestCase(StringTest)
